@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  weblog-postgresql:
+    image: postgres:12
+    container_name: weblog_postgresql
+    volumes:
+      - weblog_postgresql:/var/lib/postgresql/data
+    restart: always
+    env_file: .env
+    ports:
+      - "5432:5432"
+    networks:
+      - weblog_network
+
+volumes:
+  weblog_postgresql:
+    external: true
+networks:
+  weblog_network:
+    external: true

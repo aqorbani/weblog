@@ -1,0 +1,11 @@
+#windows
+.idea/
+
+#virtual env
+venv/
+
+#blog
+weblog/migrations/
+
+# Credentials
+.env
