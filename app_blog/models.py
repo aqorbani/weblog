@@ -19,6 +19,9 @@ class UserProfile(models.Model):
                               validators=[validate_file_extention])
     description = models.CharField(max_length=512, null=False, blank=False)
 
+    def __str__(self):
+        return self.user.first_name + " " + self.user.last_name
+
 
 class Article(models.Model):
     id = models.AutoField(primary_key=True)
@@ -40,3 +43,6 @@ class Category(models.Model):
     cover = models.FileField(upload_to='files/category_cover/', null=False, blank=False,
                              validators=[validate_file_extention])
     # parent_id = models.ForeignKey('Category')
+
+    def __str__(self):
+        return self.title
