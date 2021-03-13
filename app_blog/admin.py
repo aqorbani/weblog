@@ -23,3 +23,9 @@ class CategoryAdmin(admin.ModelAdmin):
 
 admin.site.register(Category, CategoryAdmin)
 
+
+class ContactusAdmin(admin.ModelAdmin):
+    list_display = ['name', 'phone']
+
+
+admin.site.register(Contactus, ContactusAdmin)

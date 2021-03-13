@@ -1,10 +1,13 @@
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views.generic import TemplateView
 from .models import *
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from . import serializers
+from django.views.generic import CreateView
+from .forms import ContactForm
 
 
 class IndexPage(TemplateView):
@@ -39,8 +42,19 @@ class IndexPage(TemplateView):
         return render(request, 'index.html', context)
 
 
-class ContactPage(TemplateView):
-    template_name = "page-contact.html"
+# class ContactPage(TemplateView):
+#     template_name = "contactus.html"
+
+class ContactPage(CreateView):
+    model = Contactus
+    form_class = ContactForm
+    success_url = reverse_lazy("thanks")
+    template_name = "contactus.html"
+
+
+def thanks(request):
+    from django.http import HttpResponse
+    return HttpResponse("Thank you! Will get in touch soon.")
 
 
 class AllArticleAPIView(APIView):
